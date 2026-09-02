@@ -1,0 +1,26 @@
+# Secrets — never commit
+.env
+.env.*
+*.key
+*.pem
+*.p12
+credentials.json
+secrets.json
+
+# Local cache of downloaded public data
+.cache/
+data/cache/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
