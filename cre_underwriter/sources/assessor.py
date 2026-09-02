@@ -25,14 +25,21 @@ Caveats a reader should hold on to:
     quoted per square foot must say which square footage it used.
 *   `ZoningPDB` is the Assessor's copy of the zoning string, not the City
     Planning system of record. For LA City zoning, ZIMAS is authoritative.
-*   Address search returns partial matches across the whole county and is
-    ranked by the portal, not by us. A house number plus street that exists
-    in several cities will return several parcels; the caller must
-    disambiguate, and this module refuses to pick for you when the top
-    matches are in different cities.
-*   Parcels carry a status. A parcel that was split or merged shows
-    ParcelStatus DELETED with a DeleteDate; its successor carries the data.
-    `search_parcels` filters deleted parcels out by default.
+*   Address search is loose. `1223 N Edgemont St` returns 501 matches across
+    the whole county, ranked by the portal and not by us, most of them
+    sharing only the house number. `find_one` therefore requires an exact
+    normalised street match and REFUSES rather than taking the top hit when
+    there is none — a tool that silently underwrites the Burbank parcel is
+    worse than one that stops. It also refuses when the surviving candidates
+    sit in more than one city.
+*   The search endpoint returns only AIN, situs street, city, ZIP and legal
+    description. It carries NO parcel status, so deleted parcels cannot be
+    filtered at search time. Status arrives with the detail record: a parcel
+    that was split or merged shows ParcelStatus DELETED with a DeleteDate and
+    its successor carries the data. `find_one` fetches details for the
+    candidates and prefers ACTIVE ones. On the Edgemont test address this
+    matters — AIN 5540011009 is the pre-2018 parcel, deleted, carrying no
+    units and no year built, and AIN 5540011015 is the one you want.
 *   The portal sits behind a bot-protection layer. It answered plain
     scripted requests when this was written; if that changes the adapter
     fails loudly rather than guessing.
@@ -61,8 +68,12 @@ def looks_like_ain(text: str) -> bool:
     return len(_clean_ain(text)) == 10 and _clean_ain(text) == text.strip().replace("-", "")
 
 
-def search_parcels(query: str, include_deleted: bool = False, **kw) -> Result:
-    """Free-text search. Returns Result(data={'matches': [...]})."""
+def search_parcels(query: str, **kw) -> Result:
+    """Free-text search. Returns Result(data={'matches': [...]}).
+
+    No filtering happens here, because there is nothing to filter on: the
+    endpoint returns five fields and parcel status is not one of them.
+    """
     url = SEARCH_URL + "?" + "search=" + _urlq(query)
     try:
         raw = fetch_json(url, **kw)
@@ -187,8 +198,23 @@ def find_one(address: str, city_hint: Optional[str] = None, **kw) -> Result:
         return Result(ok=False, error=f"no parcel matched {address!r}", source_url=s.source_url)
 
     target = _normalise_street(address)
-    exact = [m for m in matches if _normalise_street(m["situs_street"]) == target]
-    pool = exact or matches[:1]
+    pool = [m for m in matches if _normalise_street(m["situs_street"]) == target]
+    if not pool:
+        # The search is loose enough that the top hit is frequently a different
+        # street with the same house number. Guessing here would put the whole
+        # report on the wrong building, so it stops instead.
+        near = "; ".join(
+            f"{m['ain']} {m['situs_street']}, {m['situs_city']}" for m in matches[:5]
+        )
+        return Result(
+            ok=False,
+            error=(
+                f"no parcel whose situs street matches {address!r} exactly "
+                f"({len(matches)} loose matches returned). Pass the AIN directly, or "
+                f"check the address. Nearest by the portal's own ranking: {near}"
+            ),
+            source_url=s.source_url,
+        )
 
     if city_hint:
         want = city_hint.strip().upper()

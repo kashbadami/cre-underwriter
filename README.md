@@ -273,10 +273,11 @@ absent is reported as absent. `operating_expenses_annual` must **exclude**
 property tax and direct assessments — the model adds those itself, twice, once on
 the seller's basis and once reassessed.
 
-Tests: `python3 -m unittest discover -s tests`. 64 of them, none touching the
+Tests: `python3 -m unittest discover -s tests`. 72 of them, none touching the
 network. They cover the arithmetic with numbers small enough to check on paper,
-every branch of the regulatory overlay, the bundled YAML reader against PyYAML on
-the real config file, and the documentation — the register, the links, and a
+every branch of the regulatory overlay, the Assessor adapter's address
+disambiguation against a stubbed network, the bundled YAML reader against PyYAML
+on the real config file, and the documentation — the register, the links, and a
 sweep for anything credential-shaped.
 
 ## What we are unsure about
