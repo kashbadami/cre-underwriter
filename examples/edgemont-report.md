@@ -2,6 +2,10 @@
 
 AIN 5540011015 · built 2019 · sale 2026-01
 
+## Read first
+
+- **SB 79 transit-oriented upzoning: marked unverified in statutes.yaml. The mechanism above is as described by Jeffrey Palmer, who tracks this closely, and was NOT independently confirmed against the statute text on 2026-09-02. Marked so it is never presented as verified.**
+
 ## Price and size
 
 | Metric | Value | Provenance |
@@ -64,6 +68,32 @@ AIN 5540011015 · built 2019 · sale 2026-01
 
 - *Replacement cost*: needs land_value. The Assessor's land line is a Prop 13 artefact of the last transfer, not today's land value, so it is not substituted here.
 
+## Regulatory overlay
+
+| Field | Finding | Provenance |
+| --- | --- | --- |
+| jurisdiction | Los Angeles | derived |
+| la city rso status | LIKELY NOT COVERED by the LA City RSO | derived |
+| la city rso determination | not fetched | MANUAL · https://zimas.lacity.org/ |
+| costa hawkins vacancy decontrol | Yes — statewide | MANUAL · Civ. Code 1954.50 et seq. |
+| costa hawkins relevance | Low — post-1978 construction has no stabilised rent to decontrol | derived |
+| ab 1482 status | EXEMPT until about 2034 — building is 7 years old | derived |
+| sb 79 transit upzoning exposure | not determined | MANUAL · config/statutes.yaml — marked unverified |
+| ula transfer tax | $0 | derived |
+| base documentary transfer tax | $26,600 | derived |
+| ula exemptions | not checked | MANUAL · https://housing.lacity.gov/ula-exemptions |
+
+- *jurisdiction*: From the Assessor's situs city. This is a POSTAL designation. A 'Los Angeles' mailing address can sit in unincorporated LA County or in another incorporated city, and the rent-control regime differs in each. Confirm the incorporated city at https://zimas.lacity.org/ before acting on anything below.
+- *la city rso status*: Year built 2019 is after the 1978-10-01 cut-off. Post-1978 construction is outside the RSO. Note this cuts both ways: it also means no vacancy-decontrol upside to buy, because there is no stabilised rent to reset. Replacement units built on a site where RSO units were demolished can carry their own restrictions that a year built will not reveal — confirm at https://zimas.lacity.org/.
+- *la city rso determination*: The authoritative status. ZIMAS is a single-page application that returns an identical shell for every AIN, LAHD publishes no per-parcel endpoint, and data.lacity.org carries no rent stabilisation dataset (all checked 2026-09-02). Search the address at https://zimas.lacity.org/, or use the LAHD calculator at https://housing.lacity.gov/rso-rent-increase-calculator.
+- *costa hawkins vacancy decontrol*: A stabilised unit resets to market rent on vacancy. This is state law and a city cannot repeal it; statewide repeal was rejected at the ballot in 2018, 2020, 2024. It is what makes turnover, not the allowable annual increase, the engine of value in rent-stabilised stock — and therefore what makes the in-place-to-market rent gap the number to underwrite.
+- *costa hawkins relevance*: Vacancy decontrol is only worth something where a rent is held below market by an ordinance. Where it is not, turnover upside is an ordinary market question.
+- *ab 1482 status*: AB 1482 exempts housing certificated within the previous 15 years, and the window ROLLS: this building ages into coverage around 2034. Certificate of occupancy issued within the previous 15 years — a ROLLING window, so a building ages into coverage. Civ. Code 1947.12(d) / 1946.2(e)(7). Age here is computed from the Assessor's year built, not the certificate of occupancy.
+- *sb 79 transit upzoning exposure*: Requires transit-stop proximity and the local zoning capacity test, neither of which this tool reads. The exclusion mechanism recorded in the config is explicitly flagged unverified: it was described by a practitioner and was NOT confirmed against the statute text. Do not price SB 79 exposure off this tool. Parcel is at 34.09412, -118.29650.
+- *ula transfer tax*: $4,750,000 is below the $5,400,000 threshold, so no ULA is due on a transfer at this price. Headroom to the threshold: $650,000.
+- *base documentary transfer tax*: City 0.45% + County 0.11% = 0.56% of consideration. Separate from, and additional to, ULA. Source: https://www.lavote.gov/home/recorder/property-document-recording/documentary-transfer-taxes/general-info
+- *ula exemptions*: LAMC 21.9.14, administered by LAHD. Qualifying transferees include 501(c)(3) nonprofits, Community Land Trusts and Limited-Equity Housing Cooperatives with an affordable-housing experience requirement, plus government agencies, gifts, transfers where debt equals or exceeds value, bankruptcy, spousal and same-proportion entity transfers. Confidence on this list: medium-high — corroborated across LAHD and Hanson Bridgett; full ordinance text not read
+
 ## What the published replacement figure implies
 
 The $7,300,000 figure supplied has two unknowns behind it — land basis and hard cost per foot — and one equation. Every pair below reproduces it on 14,680 sf with 20% soft costs. The tool will not pick one for you.
@@ -83,6 +113,8 @@ The $7,300,000 figure supplied has two unknowns behind it — land basis and har
 - **material** — No property tax rate supplied. Used the 1.0% Prop 13 general levy as a floor. Every cap rate below is therefore an upper bound; the parcel's actual Tax Rate Area adds voter-approved debt service on top, and direct assessments on top of that.
 - **material** — No direct assessments supplied. Refuse, sewer, lighting, flood control and similar line items are not ad valorem, do not appear in any percentage rate, and are added to the bill. Treated as zero, which overstates NOI.
 - **material** — No land value supplied, so replacement cost is unpriced. Land is the input with the widest spread and the one this tool cannot fetch: the Assessor's land value is a factored base year figure, not market.
+- **material** — Jurisdiction is inferred from a postal city name, not from a municipal boundary lookup. Everything in this section depends on it. Confirm the parcel is inside the incorporated city before relying on any determination here.
+- **material** — Measure ULA transfer tax (City of Los Angeles): finance.lacity.gov returns HTTP 403 to automated fetch. These figures come from that page's indexed text, corroborated independently by Hanson Bridgett (June 2026) and AAGLA. lavote.gov has NOT been updated and still shows the FY 2025-26 thresholds of $5.3M and $10.6M. CONFIRM IN A BROWSER before relying on these in a live deal.
 - **note** — Soft costs (design, permits, fees, financing, carry) defaulted to 20% of hard cost for the replacement grid. Pass soft_cost_pct to replace it.
 
 ## Assumptions the tool supplied
