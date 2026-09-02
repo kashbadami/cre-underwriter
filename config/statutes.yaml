@@ -70,29 +70,70 @@ costa_hawkins:
 
 ab_1482:
   name: "AB 1482 / Tenant Protection Act"
-  # Statewide backstop for property NOT covered by a local RSO.
+  # Statewide backstop for property NOT covered by a local RSO. AB 1482 is a
+  # FLOOR: LA City RSO and LA County RSTPO override it for covered units.
   applies_if_age_years_at_least: 15
+  applies_if_age_note: >-
+    Certificate of occupancy issued within the previous 15 years — a ROLLING
+    window, so a building ages into coverage. Civ. Code 1947.12(d) / 1946.2(e)(7).
   applies_to_non_rso: true
-  cap_formula: "5% + regional CPI, capped at 10%"
-  unverified: true          # the current regional CPI component was not confirmed
-  unverified_note: >-
-    The 5% + CPI, 10% ceiling structure is well established, but the CPI
-    component in force for this period was NOT verified on 2026-09-02. The tool
-    must not present an AB 1482 cap as a fetched figure until it is.
-  verified: null
-  review_after: "2026-09-02"
+  cap_formula: "5% + regional CPI change, or 10%, whichever is lower"
+  cap_formula_source: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12"
+  la_county_current_max_pct: 8.7
+  la_county_current_max_basis: "5% + 3.7% CPI, Los Angeles Metro Area"
+  la_county_current_max_period: "2026-08-01 to 2027-07-31"
+  la_county_current_max_source: "https://dcba.lacounty.gov/portfolio/rent-increases/"
+  la_county_prior_year_pct: 8.0
+  cpi_timing_rule: >-
+    Increases on or after 1 August use April of the current year against April
+    of the prior year; before 1 August, the two preceding Aprils.
+    Civ. Code 1947.12(g)(3).
+  sfr_condo_exemption: >-
+    Single-family and condo units are exempt when NOT owned by a REIT,
+    corporation, or an LLC with a corporate member, AND the owner has served
+    the statutory written notice. Both conditions are required.
+    Civ. Code 1946.2(e)(8). Do not confuse this with the separate
+    owner-occupied exemptions at 1946.2(e)(5)-(6).
+  sunset: "2030-01-01"
+  sunset_note: "Both 1946.2 and 1947.12 are repealed as of 1 January 2030."
+  verified: "2026-09-02"
+  review_after: "2027-08-01"
 
 ula:
   name: "Measure ULA transfer tax (City of Los Angeles)"
   applies_to: "City of Los Angeles only"
-  unverified: true
-  unverified_note: >-
-    Thresholds and rates are indexed and were NOT verified on 2026-09-02. Treat
-    as MANUAL input until confirmed against finance.lacity.gov. Palmer's
-    Westchester post treats ULA as a real cost that sophisticated capital
-    underwrites around rather than avoids.
-  verified: null
-  review_after: "2026-09-02"
+  # Palmer's Westchester post treats ULA as a real cost that sophisticated
+  # capital underwrites around rather than avoids. Paid by the SELLER and
+  # assessed on the ENTIRE consideration, not the increment above the
+  # threshold — a distinction that materially changes a disposition model.
+  paid_by: "seller / transferor"
+  base: "entire consideration or value of the property, NOT the increment"
+  tiers_fy_2026_27:
+    - { from_usd: 5400000, to_usd: 10899999, rate_pct: 4.0 }
+    - { from_usd: 10900000, to_usd: null, rate_pct: 5.5 }
+  tiers_effective: "transactions closing after 2026-06-30"
+  tiers_source: "https://finance.lacity.gov/faq/measure-ula"
+  tiers_confidence: "high"
+  tiers_caveat: >-
+    finance.lacity.gov returns HTTP 403 to automated fetch. These figures come
+    from that page's indexed text, corroborated independently by Hanson
+    Bridgett (June 2026) and AAGLA. lavote.gov has NOT been updated and still
+    shows the FY 2025-26 thresholds of $5.3M and $10.6M. CONFIRM IN A BROWSER
+    before relying on these in a live deal.
+  indexation: "annual, Chained CPI (BLS), each 1 July"
+  base_dtt_la_city_pct: 0.45
+  base_dtt_la_county_pct: 0.11
+  base_dtt_source: "https://www.lavote.gov/home/recorder/property-document-recording/documentary-transfer-taxes/general-info"
+  exemptions_note: >-
+    LAMC 21.9.14, administered by LAHD. Qualifying transferees include
+    501(c)(3) nonprofits, Community Land Trusts and Limited-Equity Housing
+    Cooperatives with an affordable-housing experience requirement, plus
+    government agencies, gifts, transfers where debt equals or exceeds value,
+    bankruptcy, spousal and same-proportion entity transfers.
+  exemptions_source: "https://housing.lacity.gov/ula-exemptions"
+  exemptions_confidence: "medium-high — corroborated across LAHD and Hanson Bridgett; full ordinance text not read"
+  verified: "2026-09-02"
+  review_after: "2027-07-01"
 
 sb_79:
   name: "SB 79 transit-oriented upzoning"
@@ -112,6 +153,27 @@ sb_79:
     2026-09-02. Marked so it is never presented as verified.
   verified: null
   review_after: "2026-09-02"
+
+property_tax:
+  name: "LA County property tax on transfer"
+  reassessed_on_change_of_ownership: true
+  reassessment_source: "https://www.boe.ca.gov/proptaxes/faqs/changeinownership.htm"
+  general_levy_pct: 1.0
+  general_levy_plus: "voter-approved debt service for the specific tax rate area"
+  general_levy_source: "https://auditor.lacounty.gov/faqs/"
+  effective_rate_unverified: true
+  effective_rate_note: >-
+    No LA County .gov page states a typical or average total rate, and the
+    machine-readable rate files are PDF/XLSX/ZIP. DO NOT publish a range.
+    Pull the actual Tax Rate Area for the parcel:
+    https://onlineapps.auditor.lacounty.gov/tra/
+  direct_assessments_note: >-
+    Direct assessments (weed removal, landscape, flood control, refuse, sewer,
+    sidewalk, lighting) are property-specific, are NOT based on assessed value,
+    and are added ON TOP of the ad valorem tax. A model using only a percentage
+    understates the bill.
+  verified: "2026-09-02"
+  review_after: "2027-07-01"
 
 underwriting:
   # Not statute — market convention, and the spread is the whole point.
