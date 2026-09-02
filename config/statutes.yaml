@@ -1,0 +1,134 @@
+# Statutory constants for LA-area multifamily underwriting.
+#
+# EVERY value here carries its source URL and the date it was checked. These
+# numbers change — annually for the adjustments, unpredictably for the rest —
+# and a stale constant produces a confidently wrong valuation.
+#
+# If you are reading this because a number looks wrong: check `verified` first.
+# Anything older than its `review_after` date should be treated as unverified.
+#
+# Nothing in this file is inferred. Where a figure could not be confirmed from
+# a primary or reputable secondary source it is marked `unverified: true` and
+# the tool refuses to rely on it silently.
+
+meta:
+  checked_by: "Jarvis (jarvis-f6) for Kash Badami"
+  checked_on: "2026-09-02"
+
+la_city_rso:
+  name: "City of Los Angeles Rent Stabilization Ordinance"
+  # The single most valuable field in this file. RSO status is worth roughly a
+  # third of the value: Jeffrey Palmer (PMI Properties, 49 years) puts RSO
+  # trading near 9x gross rent against 12x for non-RSO.
+  applies_if_built_on_or_before: "1978-10-01"
+  applies_if_built_on_or_before_source: "https://housing.lacity.gov/rso-rent-increase-calculator"
+  allowable_increase_pct: 3.0
+  allowable_increase_period: "2026-07-01 to 2027-06-30"
+  allowable_increase_source: "https://housing.lacity.gov/rso-rent-increase-calculator"
+  formula_range_pct: [1.0, 4.0]
+  utility_surcharge_permitted: false
+  utility_surcharge_note: >-
+    From 2 February 2026 a landlord may no longer add a further percentage
+    increase for utilities. Models built before that date over-state allowable
+    increases.
+  verified: "2026-09-02"
+  review_after: "2027-06-30"   # the adjustment period ends
+
+santa_monica_rso:
+  name: "Santa Monica Rent Control"
+  # A separate regime from LA City. Palmer calls its formula the worst in
+  # California for higher-rent units, because of the dollar cap below — a
+  # percentage adjustment that silently becomes a much smaller percentage
+  # once the rent is high enough.
+  general_adjustment_pct: 2.6
+  general_adjustment_effective: "2026-09"
+  dollar_cap_monthly_usd: 70
+  dollar_cap_applies_at_mar_usd: 2674
+  basis: >-
+    75% of the change in the Los Angeles-area CPI for the 12 months ending in
+    March, reported as 3.4%.
+  source: "https://www.santamonica.gov/maximum-lawful-rent"
+  verified: "2026-09-02"
+  review_after: "2027-09-01"
+  effective_pct_note: >-
+    Above the cap the effective increase falls below the headline rate. At a
+    $2,674 MAR the $70 cap is ~2.6% and binds exactly; at $4,000 it is ~1.75%;
+    at $6,000 it is ~1.17%. Any model applying 2.6% flat over-states income on
+    higher-rent units.
+
+costa_hawkins:
+  name: "Costa-Hawkins Rental Housing Act"
+  # State law. Palmer's point, and it is the load-bearing one for RSO pricing:
+  # a Los Angeles mayor cannot repeal it, and vacancy decontrol is what lets a
+  # unit reset to market on turnover. California voters rejected statewide
+  # repeal or weakening in 2018, 2020 and 2024.
+  vacancy_decontrol: true
+  repealable_by_city: false
+  statewide_repeal_attempts_rejected: [2018, 2020, 2024]
+  verified: "2026-09-02"
+  review_after: "2027-01-01"
+
+ab_1482:
+  name: "AB 1482 / Tenant Protection Act"
+  # Statewide backstop for property NOT covered by a local RSO.
+  applies_if_age_years_at_least: 15
+  applies_to_non_rso: true
+  cap_formula: "5% + regional CPI, capped at 10%"
+  unverified: true          # the current regional CPI component was not confirmed
+  unverified_note: >-
+    The 5% + CPI, 10% ceiling structure is well established, but the CPI
+    component in force for this period was NOT verified on 2026-09-02. The tool
+    must not present an AB 1482 cap as a fetched figure until it is.
+  verified: null
+  review_after: "2026-09-02"
+
+ula:
+  name: "Measure ULA transfer tax (City of Los Angeles)"
+  applies_to: "City of Los Angeles only"
+  unverified: true
+  unverified_note: >-
+    Thresholds and rates are indexed and were NOT verified on 2026-09-02. Treat
+    as MANUAL input until confirmed against finance.lacity.gov. Palmer's
+    Westchester post treats ULA as a real cost that sophisticated capital
+    underwrites around rather than avoids.
+  verified: null
+  review_after: "2026-09-02"
+
+sb_79:
+  name: "SB 79 transit-oriented upzoning"
+  exclusion_rule: >-
+    A city may temporarily defer application where local zoning already permits
+    at least 50% of the state-required density and height.
+  exclusion_expires: "2030"
+  worked_example: >-
+    Santa Monica qualified for immediate exclusion in 6 of its 7 transit zones
+    because prior upzoning along commercial corridors already supplied the
+    baseline capacity, which shielded surrounding R1 lots without further
+    change.
+  unverified: true
+  unverified_note: >-
+    The mechanism above is as described by Jeffrey Palmer, who tracks this
+    closely, and was NOT independently confirmed against the statute text on
+    2026-09-02. Marked so it is never presented as verified.
+  verified: null
+  review_after: "2026-09-02"
+
+underwriting:
+  # Not statute — market convention, and the spread is the whole point.
+  grm_rso_typical: 9.0
+  grm_non_rso_typical: 12.0
+  grm_source: >-
+    Jeffrey Palmer, PMI Properties, LinkedIn, 26 August 2026: Hollywood RSO
+    moving from ~10x into the 9x range; 1980s-90s vintage non-RSO holding near
+    12x.
+  grm_note: >-
+    One practitioner's read of one submarket at one moment, not a published
+    index. Useful as a sanity check on a computed multiplier; never as an
+    input to a valuation.
+  reassess_property_tax_on_sale: true
+  reassess_note: >-
+    California reassesses to the new purchase price on transfer. A cap rate
+    computed on the seller's tax basis over-states the buyer's return, and
+    Palmer states his cap rate explicitly as being after this adjustment.
+  verified: "2026-09-02"
+  review_after: "2027-09-02"
