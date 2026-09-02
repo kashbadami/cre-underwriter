@@ -1,0 +1,29 @@
+{
+  "_comment": [
+    "1223 N Edgemont St, East Hollywood. The test case for this tool.",
+    "",
+    "This file contains ONLY figures published by Jeffrey Palmer (PMI Properties)",
+    "about the January 2026 sale. It deliberately does NOT contain a rent roll, an",
+    "expense schedule, a land value or a construction cost, because none of those",
+    "were published. The tool's job on this file is to compute what it can, refuse",
+    "what it cannot, and state what the published headline figures imply about the",
+    "inputs behind them.",
+    "",
+    "Everything else in the report — units, building area, lot size, year built,",
+    "AIN, and the seller's assessed value — is fetched live from the LA County",
+    "Assessor at run time and is not in this file."
+  ],
+
+  "address": "1223 N Edgemont St",
+  "city": "LOS ANGELES",
+  "price": 4750000,
+  "rentable_sf": 12280,
+  "sale_date": "2026-01",
+  "broker_replacement_estimate": 7300000,
+
+  "notes": [
+    "Palmer's published figures for this deal: $339,000/unit, $387/sf, ~10.5x gross, ~6.5% cap after tax reassessment, replacement cost ~$7.3M against a broker's $8.5M.",
+    "The $8.5M broker replacement figure is recorded here as context but is not used as an input; only the $7.3M figure is passed to the solver.",
+    "Rentable area of 12,280 sf is the marketed figure. The Assessor carries 14,680 sf of building area for this parcel. The report shows both."
+  ]
+}

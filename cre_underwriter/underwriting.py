@@ -67,6 +67,12 @@ def run(deal: Deal, statutes=None) -> Underwriting:
     rsf = _f(deal.rentable_sf)
     bsf = _f(deal.building_sf_assessor)
 
+    # The inputs are carried into the metric table too. A reader should not have
+    # to hold the price in their head to check a ratio, and the price itself has
+    # a provenance worth showing — it is usually INPUT, i.e. someone told us.
+    m["price"] = deal.price
+    m["units"] = deal.units
+
     # -- per-unit and per-foot -------------------------------------------
 
     m["price_per_unit"] = (
@@ -373,6 +379,22 @@ def _replacement(deal: Deal, m, scen, caveats) -> None:
             implied,
             note=f"the hard cost per foot that reproduces the ${ref:,.0f} figure "
             f"supplied, given land ${land:,.0f} and {soft_used:g}% soft costs",
+        )
+    elif ref:
+        # Land unknown and cost per foot unknown: one equation, two unknowns.
+        # Rather than fix one by assumption, show the locus. Somebody who knows
+        # the land basis can read their own answer off it, and a pair that is
+        # obviously wrong for the submarket falsifies the published figure.
+        locus = []
+        for land_try in (1_000_000, 1_500_000, 2_000_000, 2_500_000, 3_000_000, 4_000_000):
+            implied = (ref - land_try) / (1.0 + soft_used / 100.0) / bsf
+            locus.append({"land_value": land_try, "implied_cost_per_sf": implied})
+        scen["replacement_solve_locus"] = locus
+        scen["replacement_solve_note"] = (
+            f"The ${ref:,.0f} figure supplied has two unknowns behind it — land basis "
+            f"and hard cost per foot — and one equation. Every pair below reproduces "
+            f"it on {bsf:,.0f} sf with {soft_used:g}% soft costs. The tool will not "
+            f"pick one for you."
         )
 
 
