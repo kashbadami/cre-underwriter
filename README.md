@@ -1,5 +1,16 @@
 # cre-underwriter
 
+**Built for Jeffrey Palmer at PMI Properties, from his own published deal analysis.**
+Unsolicited — nobody asked for it, and it is offered to be corrected rather than
+sold. It automates the boring 80%: the Assessor lookups, the statutory tests and
+the arithmetic that have to happen before judgement starts. The 20% that is
+judgement is left alone, and where a public source cannot answer, it says so.
+
+**The point is time, not cleverness.** None of the maths here is hard. What takes
+the time is pulling the parcel, checking the year against three separate rent
+laws, remembering that taxes reassess on transfer, and doing it again for the
+next deal. That is what this removes.
+
 Takes an LA-area multifamily address and a rent roll and returns the underwriting
 plus the regulatory overlay: price per unit and per foot, gross rent multiplier,
 cap rate with property taxes reassessed to the purchase price, replacement cost,
@@ -15,6 +26,7 @@ Python 3.8+. No dependencies, no API keys, nothing to configure.
 - [What is automated and what is not](#what-is-automated-and-what-is-not)
 - [Install](#install)
 - [Usage](#usage)
+- [An honest assessment of this tool](#an-honest-assessment-of-this-tool)
 - [What we are unsure about](#what-we-are-unsure-about)
 
 ## Worked example: 1223 N Edgemont St
@@ -279,6 +291,45 @@ every branch of the regulatory overlay, the Assessor adapter's address
 disambiguation against a stubbed network, the bundled YAML reader against PyYAML
 on the real config file, and the documentation — the register, the links, and a
 sweep for anything credential-shaped.
+
+
+## An honest assessment of this tool
+
+Written for a reader deciding whether it is worth an hour.
+
+**What it does well.** It reproduces the two figures on the Edgemont deal that can
+be checked against published numbers, to the dollar. It pulls the Assessor record
+automatically, applies the three rent-control regimes by date, computes the tax
+position after reassessment, and tags every value with where it came from. On a
+deal it takes seconds, against the fifteen or twenty minutes of lookups it
+replaces.
+
+**What it refuses to do, deliberately.** Three of the five published Edgemont
+figures are not computed, because the inputs were never published. It would have
+been trivial to reverse-engineer them and show five matches out of five. That
+would have been a lie, and a tool that lies once about something checkable cannot
+be trusted about anything else. It shows the implication instead and leaves the
+conclusion to the reader.
+
+**The weakest part, stated plainly.** The single most valuable output — whether a
+building is rent-stabilised — is **derived, not fetched**. The statutory test is
+the certificate of occupancy date; the Assessor publishes only the year built.
+The tool uses year built as a proxy, which is right in the great majority of
+cases and wrong at the edges, and returns INDETERMINATE for anything built in
+1978 rather than guessing at the October cut-off. Every rent-control field is
+tagged DERIVED for that reason. ZIMAS serves an identical Angular shell for every
+parcel and LAHD exposes no per-parcel endpoint, so an authoritative answer is
+still a manual check, with the URL supplied.
+
+**What it is not.** It is not a product. The arithmetic is what any spreadsheet
+does; the value is the automatic lookup, the statutory overlay and the
+provenance discipline. It covers LA County only, and it rides an undocumented
+Assessor endpoint that answered on 2 September 2026 — if that changes, the
+adapter raises rather than degrading quietly.
+
+**What would make it materially better** is the one thing that cannot be obtained
+from outside: real rent rolls and expense schedules from someone who owns the
+deals. That is the invitation.
 
 ## What we are unsure about
 
