@@ -18,7 +18,7 @@ meta:
 la_city_rso:
   name: "City of Los Angeles Rent Stabilization Ordinance"
   # The single most valuable field in this file. RSO status is worth roughly a
-  # third of the value: Jeffrey Palmer (PMI Properties, 49 years) puts RSO
+  # third of the value: a veteran LA broker's published read puts RSO
   # trading near 9x gross rent against 12x for non-RSO.
   applies_if_built_on_or_before: "1978-10-01"
   applies_if_built_on_or_before_source: "https://housing.lacity.gov/rso-rent-increase-calculator"
@@ -36,7 +36,7 @@ la_city_rso:
 
 santa_monica_rso:
   name: "Santa Monica Rent Control"
-  # A separate regime from LA City. Palmer calls its formula the worst in
+  # A separate regime from LA City. One LA broker's published view calls its formula the worst in
   # California for higher-rent units, because of the dollar cap below — a
   # percentage adjustment that silently becomes a much smaller percentage
   # once the rent is high enough.
@@ -58,7 +58,7 @@ santa_monica_rso:
 
 costa_hawkins:
   name: "Costa-Hawkins Rental Housing Act"
-  # State law. Palmer's point, and it is the load-bearing one for RSO pricing:
+  # State law. The load-bearing point for RSO pricing:
   # a Los Angeles mayor cannot repeal it, and vacancy decontrol is what lets a
   # unit reset to market on turnover. California voters rejected statewide
   # repeal or weakening in 2018, 2020 and 2024.
@@ -102,7 +102,7 @@ ab_1482:
 ula:
   name: "Measure ULA transfer tax (City of Los Angeles)"
   applies_to: "City of Los Angeles only"
-  # Palmer's Westchester post treats ULA as a real cost that sophisticated
+  # Practitioner commentary treats ULA as a real cost that sophisticated
   # capital underwrites around rather than avoids. Paid by the SELLER and
   # assessed on the ENTIRE consideration, not the increment above the
   # threshold — a distinction that materially changes a disposition model.
@@ -148,8 +148,7 @@ sb_79:
     change.
   unverified: true
   unverified_note: >-
-    The mechanism above is as described by Jeffrey Palmer, who tracks this
-    closely, and was NOT independently confirmed against the statute text on
+    The mechanism above is as described in published practitioner commentary, and was NOT independently confirmed against the statute text on
     2026-09-02. Marked so it is never presented as verified.
   verified: null
   review_after: "2026-09-02"
@@ -180,7 +179,7 @@ underwriting:
   grm_rso_typical: 9.0
   grm_non_rso_typical: 12.0
   grm_source: >-
-    Jeffrey Palmer, PMI Properties, LinkedIn, 26 August 2026: Hollywood RSO
+    A local broker's published market read, LinkedIn, 26 August 2026: Hollywood RSO
     moving from ~10x into the 9x range; 1980s-90s vintage non-RSO holding near
     12x.
   grm_note: >-
@@ -191,6 +190,6 @@ underwriting:
   reassess_note: >-
     California reassesses to the new purchase price on transfer. A cap rate
     computed on the seller's tax basis over-states the buyer's return, and
-    Palmer states his cap rate explicitly as being after this adjustment.
+    the worked example's published cap rate is stated explicitly as being after this adjustment.
   verified: "2026-09-02"
   review_after: "2027-09-02"

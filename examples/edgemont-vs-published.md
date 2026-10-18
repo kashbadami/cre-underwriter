@@ -1,6 +1,6 @@
 # 1223 N Edgemont St — published figures against the tool's output
 
-Jeffrey Palmer (PMI Properties) published five figures for the January 2026 sale
+A local broker published five figures for the January 2026 sale
 of this 14-unit East Hollywood building at $4,750,000. This is what the tool
 produces from the same starting facts, and where it does not agree, why.
 
@@ -15,7 +15,7 @@ Full output: [`edgemont-report.md`](edgemont-report.md).
 
 ## Side by side
 
-| | Palmer | This tool | |
+| | Published | This tool | |
 | --- | --- | --- | --- |
 | Price per unit | $339,000 | $339,286 | agrees |
 | Price per sf | $387 | $386.81 | agrees, on the marketed 12,280 sf |
@@ -86,7 +86,7 @@ price. So on transfer the tax bill **falls**:
 
 Reassessment is worth **+51 bps** to the buyer here, not a cost. A model that
 carried the seller's tax line forward would show roughly **5.99%**, not 6.5% —
-understating the return rather than overstating it. Palmer's 6.5% is stated
+understating the return rather than overstating it. The published 6.5% is stated
 after reassessment and is the correct one; the point is that the usual
 adjustment has the opposite sign on this deal, and a tool that only knows the
 rule of thumb "reassessment lowers the cap rate" gets it backwards.
@@ -110,7 +110,7 @@ down roughly 27%.**
 
 ## 4. Replacement cost: not reproduced, because it has two unknowns
 
-Palmer's ~$7.3M against a broker's $8.5M. Replacement cost is land plus hard
+The published ~$7.3M against a broker's $8.5M. Replacement cost is land plus hard
 cost plus soft cost, and the tool has no public source for either land value at
 market or construction cost per foot. It will not invent them.
 
@@ -165,7 +165,7 @@ problem, or a motivated seller who bought at $6.5M in 2021. The tool cannot tell
 you which. It can tell you the discount is real and that the regulatory
 explanation is not available.
 
-**The 9x/12x spread is Palmer's own read of one submarket at one moment** — it is
+**The 9x/12x spread is the broker's own read of one submarket at one moment** — it is
 recorded as such in `config/statutes.yaml` and it is not a published index. It is
 used above as a sanity check, which is the only thing it is good for.
 
@@ -183,7 +183,7 @@ better information than a guess would have: the rent roll the multiplier
 requires, the expense load the cap rate requires, and the land-and-cost pairs
 the replacement figure requires.
 
-And the one place the tool has something Palmer's published figures do not is a
+And the one place the tool has something the published figures do not is a
 consequence of it reading the Assessor's roll rather than a broker's flyer —
 that the reassessment on this deal is a **tax cut worth 51 bps**, not the usual
 cost, and that the building is **outside the RSO**, which moves it to the wrong

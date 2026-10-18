@@ -172,7 +172,7 @@ report automatically — if you see one, say so rather than passing the number o
 
 ## Worked example
 
-`examples/edgemont.json` with `examples/edgemont-vs-palmer.md` runs the tool
+`examples/edgemont.json` with `examples/edgemont-vs-published.md` runs the tool
 against a real January 2026 sale where the outputs are publicly known, and sets
 what it produced beside them including where it disagreed. Read that before
 trusting anything here on a live deal.

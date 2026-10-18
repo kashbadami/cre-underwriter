@@ -14,7 +14,7 @@ import unittest
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DOCS = ["README.md", "SKILL.md", "examples/edgemont-vs-palmer.md"]
+DOCS = ["README.md", "SKILL.md", "examples/edgemont-vs-published.md"]
 
 # Vocabulary this repo does not use. Not a style preference: the audience is a
 # practitioner who said publicly that he is tired of this category's noise.

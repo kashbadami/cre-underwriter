@@ -1,12 +1,11 @@
 # cre-underwriter
 
-**Built for Jeffrey Palmer at PMI Properties, from his own published deal analysis.**
-Unsolicited — nobody asked for it, and it is offered to be corrected rather than
-sold. It automates the boring 80%: the Assessor lookups, the statutory tests and
-the arithmetic that have to happen before judgement starts. The 20% that is
-judgement is left alone, and where a public source cannot answer, it says so.
+**Built for LA multifamily brokers and investors, and tested against a published deal analysis.**
+It automates the boring 80%: the Assessor lookups, the statutory tests and
+the arithmetic that have to happen before judgment starts. The 20% that is
+judgment is left alone, and where a public source cannot answer, it says so.
 
-**The point is time, not cleverness.** None of the maths here is hard. What takes
+**The point is time, not cleverness.** None of the math here is hard. What takes
 the time is pulling the parcel, checking the year against three separate rent
 laws, remembering that taxes reassess on transfer, and doing it again for the
 next deal. That is what this removes.
@@ -31,8 +30,8 @@ Python 3.8+. No dependencies, no API keys, nothing to configure.
 
 ## Worked example: 1223 N Edgemont St
 
-14 units in East Hollywood, sold January 2026 for $4,750,000. Jeffrey Palmer of
-PMI Properties published his numbers on this deal, which makes it a test rather
+14 units in East Hollywood, sold January 2026 for $4,750,000. A local broker
+published their numbers on this deal, which makes it a test rather
 than a demo. Reproduce it with:
 
 ```
@@ -163,7 +162,7 @@ questions. The tool prints both and raises a caveat, so nobody has to work out
 which denominator a flyer used.
 
 Full output: [`examples/edgemont-report.md`](examples/edgemont-report.md).
-Longer write-up: [`examples/edgemont-vs-palmer.md`](examples/edgemont-vs-palmer.md).
+Longer write-up: [`examples/edgemont-vs-published.md`](examples/edgemont-vs-published.md).
 
 ## What is automated and what is not
 

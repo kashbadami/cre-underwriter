@@ -4,7 +4,7 @@ AIN 5540011015 · built 2019 · sale 2026-01
 
 ## Read first
 
-- **SB 79 transit-oriented upzoning: marked unverified in statutes.yaml. The mechanism above is as described by Jeffrey Palmer, who tracks this closely, and was NOT independently confirmed against the statute text on 2026-09-02. Marked so it is never presented as verified.**
+- **SB 79 transit-oriented upzoning: marked unverified in statutes.yaml. The mechanism above is as described in published practitioner commentary, and was NOT independently confirmed against the statute text on 2026-09-02. Marked so it is never presented as verified.**
 
 ## Price and size
 
@@ -136,7 +136,7 @@ Every one of these is a number nobody gave us. Replace them.
 
 ## Notes on this deal
 
-- Palmer's published figures for this deal: $339,000/unit, $387/sf, ~10.5x gross, ~6.5% cap after tax reassessment, replacement cost ~$7.3M against a broker's $8.5M.
+- The published figures for this deal: $339,000/unit, $387/sf, ~10.5x gross, ~6.5% cap after tax reassessment, replacement cost ~$7.3M against a broker's $8.5M.
 - The $8.5M broker replacement figure is recorded here as context but is not used as an input; only the $7.3M figure is passed to the solver.
 - Rentable area of 12,280 sf is the marketed figure. The Assessor carries 14,680 sf of building area for this parcel. The report shows both.
 
