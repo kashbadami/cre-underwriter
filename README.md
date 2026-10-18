@@ -70,7 +70,7 @@ to be true:
 ### Where the tool has something the published figures do not
 
 **1. The tax reassessment runs the wrong way on this deal, in the buyer's
-favour.**
+favor.**
 
 The standard warning about California multifamily is that a pro forma copies the
 seller's tax bill forward, misses the reassessment to the purchase price, and
@@ -204,7 +204,7 @@ LIKELY NOT COVERED and hands over the URL.
 
 | Field | Why | Where to check |
 | --- | --- | --- |
-| Authoritative RSO determination | ZIMAS is a single-page application returning an identical 15,524-byte shell for every AIN; no server-rendered parcel page, no documented service behind it. LAHD publishes no per-parcel endpoint. No rent-stabilisation dataset in the data.lacity.org catalogue. All probed 2026-09-02. | <https://zimas.lacity.org/> |
+| Authoritative RSO determination | ZIMAS is a single-page application returning an identical 15,524-byte shell for every AIN; no server-rendered parcel page, no documented service behind it. LAHD publishes no per-parcel endpoint. No rent-stabilization dataset in the data.lacity.org catalogue. All probed 2026-09-02. | <https://zimas.lacity.org/> |
 | Certificate of occupancy date | The actual statutory RSO test. The Assessor's year built is a proxy, and a building dated 1978 cannot be resolved from it at all — the cut-off is 1 October 1978 and the roll carries no month. The tool returns INDETERMINATE for 1978. | ZIMAS, or LADBS records |
 | Parcel's total tax rate | LA County publishes Tax Rate Area rates as PDF/XLSX/ZIP, not machine-readable. Without it the tool uses the 1.0% general levy, which is a floor on the tax and a ceiling on every cap rate in the report. | <https://onlineapps.auditor.lacounty.gov/tra/> |
 | Direct assessments | Refuse, sewer, lighting, flood control and similar. Not ad valorem, not in any percentage rate, added on top of the bill. Property-specific. | County tax bill for the parcel |
@@ -311,7 +311,7 @@ be trusted about anything else. It shows the implication instead and leaves the
 conclusion to the reader.
 
 **The weakest part, stated plainly.** The single most valuable output — whether a
-building is rent-stabilised — is **derived, not fetched**. The statutory test is
+building is rent-stabilized — is **derived, not fetched**. The statutory test is
 the certificate of occupancy date; the Assessor publishes only the year built.
 The tool uses year built as a proxy, which is right in the great majority of
 cases and wrong at the edges, and returns INDETERMINATE for anything built in

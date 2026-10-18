@@ -10,7 +10,7 @@ tax treatment, and it is the reason the file exists:
 
     California reassesses to the purchase price on a change of ownership
     (Rev. & Tax. Code 60-64; BOE change-in-ownership FAQ). The seller's tax
-    bill is a Prop 13 artefact of whenever they last bought, adjusted up by
+    bill is a Prop 13 artifact of whenever they last bought, adjusted up by
     at most 2% a year. It tells you nothing about what the BUYER will pay.
 
     A cap rate computed on the seller's tax line is therefore not the buyer's
@@ -274,7 +274,7 @@ def run(deal: Deal, statutes=None) -> Underwriting:
         non_grm = float(statutes.get("underwriting", "grm_non_rso_typical"))
         m["value_at_rso_grm"] = derived(
             gsr * rso_grm,
-            note=f"annual gross rent x {rso_grm:g} — the multiple rent-stabilised "
+            note=f"annual gross rent x {rso_grm:g} — the multiple rent-stabilized "
             f"stock trades at",
         )
         m["value_at_non_rso_grm"] = derived(
@@ -324,7 +324,7 @@ def _replacement(deal: Deal, m, scen, caveats) -> None:
 
     if land is None:
         m["replacement_cost"] = missing(
-            "needs land_value. The Assessor's land line is a Prop 13 artefact of the "
+            "needs land_value. The Assessor's land line is a Prop 13 artifact of the "
             "last transfer, not today's land value, so it is not substituted here."
         )
         caveats.append(

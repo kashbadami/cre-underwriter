@@ -158,7 +158,7 @@ rent implied by his own 10.5x:
 | Actual | 10.5x | $4,750,000 |
 
 A non-RSO 14-unit building traded at 10.5x, **12.5% below** the 12x convention
-for non-RSO stock and only 17% above where rent-stabilised stock trades. Either
+for non-RSO stock and only 17% above where rent-stabilized stock trades. Either
 the convention does not hold in this submarket, or something else is priced into
 this deal — deferred maintenance, a covenanted affordable component, an occupancy
 problem, or a motivated seller who bought at $6.5M in 2021. The tool cannot tell

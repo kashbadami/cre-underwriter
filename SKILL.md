@@ -104,7 +104,7 @@ quotes whichever flatters, so the tool prints both and raises a caveat when they
 diverge. Gross rent multiplier. Density per acre.
 
 **Cap rate, twice.** California reassesses property to the purchase price on a
-change of ownership, so the seller's tax bill is a Prop 13 artefact and says
+change of ownership, so the seller's tax bill is a Prop 13 artifact and says
 nothing about what the buyer pays. The tool computes NOI and the cap rate on the
 seller's basis, again with taxes reassessed to the price, and reports the delta
 in basis points.
@@ -114,7 +114,7 @@ above today's price gets a tax cut on transfer and a *higher* cap rate. The tool
 reports whichever direction the arithmetic gives. Do not assume the sign.
 
 **The RSO spread in dollars.** The same rent roll valued at the multiple
-rent-stabilised stock trades at and at the multiple non-RSO stock trades at, and
+rent-stabilized stock trades at and at the multiple non-RSO stock trades at, and
 the difference between them, so regulatory status visibly moves the valuation.
 The two multiples are one practitioner's read of one submarket, recorded as such
 in `config/statutes.yaml`. Use them to sanity-check a computed multiplier, never
@@ -145,7 +145,7 @@ Manual, because no public endpoint answers per parcel — the tool marks the fie
 
 - **The authoritative RSO determination.** ZIMAS is a single-page application
   that returns an identical shell for every AIN; LAHD publishes no per-parcel
-  endpoint; there is no rent-stabilisation dataset on data.lacity.org. Checked
+  endpoint; there is no rent-stabilization dataset on data.lacity.org. Checked
   2 September 2026. Use <https://zimas.lacity.org/>.
 - **Certificate of occupancy date.** The statutory RSO test. The Assessor's year
   built is a proxy and a building dated 1978 cannot be resolved from it at all,

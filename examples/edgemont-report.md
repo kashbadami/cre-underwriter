@@ -66,7 +66,7 @@ AIN 5540011015 · built 2019 · sale 2026-01
 | --- | --- | --- |
 | Replacement cost | — | MISSING |
 
-- *Replacement cost*: needs land_value. The Assessor's land line is a Prop 13 artefact of the last transfer, not today's land value, so it is not substituted here.
+- *Replacement cost*: needs land_value. The Assessor's land line is a Prop 13 artifact of the last transfer, not today's land value, so it is not substituted here.
 
 ## Regulatory overlay
 
@@ -76,7 +76,7 @@ AIN 5540011015 · built 2019 · sale 2026-01
 | la city rso status | LIKELY NOT COVERED by the LA City RSO | derived |
 | la city rso determination | not fetched | MANUAL · https://zimas.lacity.org/ |
 | costa hawkins vacancy decontrol | Yes — statewide | MANUAL · Civ. Code 1954.50 et seq. |
-| costa hawkins relevance | Low — post-1978 construction has no stabilised rent to decontrol | derived |
+| costa hawkins relevance | Low — post-1978 construction has no stabilized rent to decontrol | derived |
 | ab 1482 status | EXEMPT until about 2034 — building is 7 years old | derived |
 | sb 79 transit upzoning exposure | not determined | MANUAL · config/statutes.yaml — marked unverified |
 | ula transfer tax | $0 | derived |
@@ -84,9 +84,9 @@ AIN 5540011015 · built 2019 · sale 2026-01
 | ula exemptions | not checked | MANUAL · https://housing.lacity.gov/ula-exemptions |
 
 - *jurisdiction*: From the Assessor's situs city. This is a POSTAL designation. A 'Los Angeles' mailing address can sit in unincorporated LA County or in another incorporated city, and the rent-control regime differs in each. Confirm the incorporated city at https://zimas.lacity.org/ before acting on anything below.
-- *la city rso status*: Year built 2019 is after the 1978-10-01 cut-off. Post-1978 construction is outside the RSO. Note this cuts both ways: it also means no vacancy-decontrol upside to buy, because there is no stabilised rent to reset. Replacement units built on a site where RSO units were demolished can carry their own restrictions that a year built will not reveal — confirm at https://zimas.lacity.org/.
-- *la city rso determination*: The authoritative status. ZIMAS is a single-page application that returns an identical shell for every AIN, LAHD publishes no per-parcel endpoint, and data.lacity.org carries no rent stabilisation dataset (all checked 2026-09-02). Search the address at https://zimas.lacity.org/, or use the LAHD calculator at https://housing.lacity.gov/rso-rent-increase-calculator.
-- *costa hawkins vacancy decontrol*: A stabilised unit resets to market rent on vacancy. This is state law and a city cannot repeal it; statewide repeal was rejected at the ballot in 2018, 2020, 2024. It is what makes turnover, not the allowable annual increase, the engine of value in rent-stabilised stock — and therefore what makes the in-place-to-market rent gap the number to underwrite.
+- *la city rso status*: Year built 2019 is after the 1978-10-01 cut-off. Post-1978 construction is outside the RSO. Note this cuts both ways: it also means no vacancy-decontrol upside to buy, because there is no stabilized rent to reset. Replacement units built on a site where RSO units were demolished can carry their own restrictions that a year built will not reveal — confirm at https://zimas.lacity.org/.
+- *la city rso determination*: The authoritative status. ZIMAS is a single-page application that returns an identical shell for every AIN, LAHD publishes no per-parcel endpoint, and data.lacity.org carries no rent stabilization dataset (all checked 2026-09-02). Search the address at https://zimas.lacity.org/, or use the LAHD calculator at https://housing.lacity.gov/rso-rent-increase-calculator.
+- *costa hawkins vacancy decontrol*: A stabilized unit resets to market rent on vacancy. This is state law and a city cannot repeal it; statewide repeal was rejected at the ballot in 2018, 2020, 2024. It is what makes turnover, not the allowable annual increase, the engine of value in rent-stabilized stock — and therefore what makes the in-place-to-market rent gap the number to underwrite.
 - *costa hawkins relevance*: Vacancy decontrol is only worth something where a rent is held below market by an ordinance. Where it is not, turnover upside is an ordinary market question.
 - *ab 1482 status*: AB 1482 exempts housing certificated within the previous 15 years, and the window ROLLS: this building ages into coverage around 2034. Certificate of occupancy issued within the previous 15 years — a ROLLING window, so a building ages into coverage. Civ. Code 1947.12(d) / 1946.2(e)(7). Age here is computed from the Assessor's year built, not the certificate of occupancy.
 - *sb 79 transit upzoning exposure*: Requires transit-stop proximity and the local zoning capacity test, neither of which this tool reads. The exclusion mechanism recorded in the config is explicitly flagged unverified: it was described by a practitioner and was NOT confirmed against the statute text. Do not price SB 79 exposure off this tool. Parcel is at 34.09412, -118.29650.
@@ -132,7 +132,7 @@ Every one of these is a number nobody gave us. Replace them.
 - `direct_assessments_annual` — not supplied; the ad valorem rate does not include them
 - `noi_reassessed` — needs income and operating expenses
 - `cap_rate_reassessed_pct` — needs income and operating expenses
-- `replacement_cost` — needs land_value. The Assessor's land line is a Prop 13 artefact of the last transfer, not today's land value, so it is not substituted here.
+- `replacement_cost` — needs land_value. The Assessor's land line is a Prop 13 artifact of the last transfer, not today's land value, so it is not substituted here.
 
 ## Notes on this deal
 

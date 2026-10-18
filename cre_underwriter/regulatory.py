@@ -15,7 +15,7 @@ MANUAL (no public API answers per parcel; the tool gives you the URL)
     The authoritative RSO determination. ZIMAS is an Angular application that
     returns an identical 15KB shell for every AIN — there is no server-rendered
     parcel page to parse and no documented service behind it. LAHD publishes no
-    per-parcel RSO endpoint and there is no rent-stabilisation dataset on
+    per-parcel RSO endpoint and there is no rent-stabilization dataset on
     data.lacity.org. Checked 2 September 2026.
 
     Also manual: the certificate of occupancy date (the statutory test, which is
@@ -212,7 +212,7 @@ def _la_rso(ov, statutes, city, units, year, today) -> None:
             f"Year built {year} is after the {cutoff.isoformat()} cut-off. Post-1978 "
             f"construction is outside the RSO. Note this cuts both ways: it also "
             f"means no vacancy-decontrol upside to buy, because there is no "
-            f"stabilised rent to reset. Replacement units built on a site where RSO "
+            f"stabilized rent to reset. Replacement units built on a site where RSO "
             f"units were demolished can carry their own restrictions that a year "
             f"built will not reveal — confirm at {ZIMAS_URL}."
         )
@@ -240,7 +240,7 @@ def _la_rso(ov, statutes, city, units, year, today) -> None:
                 "The authoritative status. ZIMAS is a single-page application that "
                 "returns an identical shell for every AIN, LAHD publishes no "
                 "per-parcel endpoint, and data.lacity.org carries no rent "
-                "stabilisation dataset (all checked 2026-09-02). Search the address "
+                "stabilization dataset (all checked 2026-09-02). Search the address "
                 f"at {ZIMAS_URL}, or use the LAHD calculator at {LAHD_RSO_URL}."
             ),
         ),
@@ -258,11 +258,11 @@ def _costa_hawkins(ov, statutes, city, year) -> None:
             "Yes — statewide",
             source="Civ. Code 1954.50 et seq.",
             note=(
-                "A stabilised unit resets to market rent on vacancy. This is state "
+                "A stabilized unit resets to market rent on vacancy. This is state "
                 "law and a city cannot repeal it; statewide repeal was rejected at "
                 f"the ballot in {', '.join(str(y) for y in sec['statewide_repeal_attempts_rejected'])}. "
                 "It is what makes turnover, not the allowable annual increase, the "
-                "engine of value in rent-stabilised stock — and therefore what makes "
+                "engine of value in rent-stabilized stock — and therefore what makes "
                 "the in-place-to-market rent gap the number to underwrite."
             ),
         ),
@@ -271,7 +271,7 @@ def _costa_hawkins(ov, statutes, city, year) -> None:
         ov.add(
             "costa_hawkins_relevance",
             derived(
-                "Low — post-1978 construction has no stabilised rent to decontrol",
+                "Low — post-1978 construction has no stabilized rent to decontrol",
                 note="Vacancy decontrol is only worth something where a rent is held "
                 "below market by an ordinance. Where it is not, turnover upside is "
                 "an ordinary market question.",
